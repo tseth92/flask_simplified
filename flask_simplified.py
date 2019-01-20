@@ -27,7 +27,7 @@ def get_json_response(filename):
             labels_dict = json.load(labels)
         print(labels_dict)
         print("\n---------------------labels_dict---------------------\n")
-		response_dict[STATUS] = "true"
+        response_dict[STATUS] = "true"
         response_dict["LABELS_MAPPING"] = labels_dict
         print("response_dict is: ", response_dict)
         js_dump = json.dumps(response_dict)
@@ -37,7 +37,7 @@ def get_json_response(filename):
 
     except FileNotFoundError as err:
         print("FileNotFoundError in downloadLabel", err)
-		response_dict[STATUS] = "false"
+        response_dict[STATUS] = "false"
         response_dict = {'error': 'file not found in server'}
         js_dump = json.dumps(response_dict)
         resp = Response(js_dump,\
@@ -46,7 +46,7 @@ def get_json_response(filename):
         print("sending error response")
     except RuntimeError as err:
         print("RuntimeError error in downloadLabel", err)
-		response_dict[STATUS] = "false"
+        response_dict[STATUS] = "false"
         response_dict = {'error': 'error occured on server side. Please try again'}
         js_dump = json.dumps(response_dict)
         resp = Response(js_dump,\
@@ -85,7 +85,7 @@ def upload_files():
     except RuntimeError as err:
         print("RuntimeError error in downloadLabel", err)
         response_dict = {'error': 'error occured on server side. Please try again'}
-		response_dict[STATUS] = "false"
+        response_dict[STATUS] = "false"
         js_dump = json.dumps(response_dict)
         resp = Response(js_dump,\
                         status=500,\
