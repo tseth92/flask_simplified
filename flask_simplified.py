@@ -1,6 +1,10 @@
 """a get and post call to show the working of Flask API\
 GET call recieves data from a file present in server and \
 POST call saves a file sent to the server"""
+
+__author__ = "Tushar SEth"
+__email__  = "tusharseth93@gmail.com"
+
 import os
 from flask import request
 from flask import json
