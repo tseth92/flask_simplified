@@ -1,5 +1,5 @@
-"""a get and post call to show the working of Flask API\
-GET call recieves data from a file present in server and \
+"""a get and post call to show the working of Flask API
+GET call recieves data from a file present in server and
 POST call saves a file sent to the server"""
 
 __author__ = "Tushar SEth"
@@ -35,8 +35,8 @@ def get_json_response(filename):
         response_dict["LABELS_MAPPING"] = labels_dict
         print("response_dict is: ", response_dict)
         js_dump = json.dumps(response_dict)
-        resp = Response(js_dump,\
-                        status=200,\
+        resp = Response(js_dump,
+                        status=200,
                         mimetype='application/json')
 
     except FileNotFoundError as err:
@@ -44,8 +44,8 @@ def get_json_response(filename):
         response_dict[STATUS] = "false"
         response_dict = {'error': 'file not found in server'}
         js_dump = json.dumps(response_dict)
-        resp = Response(js_dump,\
-                        status=500,\
+        resp = Response(js_dump,
+                        status=500,
                         mimetype='application/json')
         print("sending error response")
     except RuntimeError as err:
@@ -53,15 +53,15 @@ def get_json_response(filename):
         response_dict[STATUS] = "false"
         response_dict = {'error': 'error occured on server side. Please try again'}
         js_dump = json.dumps(response_dict)
-        resp = Response(js_dump,\
-                        status=500,\
+        resp = Response(js_dump,
+                        status=500,
                         mimetype='application/json')
     return resp
 
 
 @APP.route("/uploadFiles", methods=['POST'])
 def upload_files():
-    """uploads file to the server. This will save file to the \
+    """uploads file to the server. This will save file to the
         directory where server is running"""
     response_dict = {}
     error_files = ""
@@ -82,8 +82,8 @@ def upload_files():
         response_dict[STATUS] = "true"
         response_dict[ERROR_FILES_LIST] = error_files
         js_dump = json.dumps(response_dict)
-        resp = Response(js_dump, \
-                        status=200, \
+        resp = Response(js_dump,
+                        status=200,
                         mimetype='application/json')
 
     except RuntimeError as err:
@@ -91,8 +91,8 @@ def upload_files():
         response_dict = {'error': 'error occured on server side. Please try again'}
         response_dict[STATUS] = "false"
         js_dump = json.dumps(response_dict)
-        resp = Response(js_dump,\
-                        status=500,\
+        resp = Response(js_dump,
+                        status=500,
                         mimetype='application/json')
     return resp
 
